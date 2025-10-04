@@ -1,0 +1,254 @@
+name: "Test, Release, Publish"
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force_bump:
+        description: "Force version bump type (leave empty to auto-detect from commit messages)"
+        required: false
+        type: choice
+        options:
+          - ""
+          - "patch"
+          - "minor"
+          - "major"
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  lint:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup uv with caching
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install ruff
+        run: uv tool install ruff
+
+      - name: Run ruff check
+        run: uv tool run ruff check .
+
+      - name: Run ruff format check
+        run: uv tool run ruff format --check .
+
+  test:
+    name: PyTest on ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup uv with caching
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install project dependencies
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run tests with coverage
+        run: uv run pytest --cov=src/wolpie --cov-branch --cov-report=xml --cov-config=pyproject.toml tests
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  docs:
+    name: Build Docs
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.should_release == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+
+      - name: Setup uv with caching
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install project dependencies with docs extras
+        run: uv sync --locked --group docs --all-extras --dev
+
+      - name: Build Sphinx documentation
+        run: |
+          cd docs
+          uv run sphinx-build -b html . _build/html
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: docs/_build/html
+
+  deploy-docs:
+    name: Deploy Docs
+    runs-on: ubuntu-latest
+    needs: [docs, release]
+    if: needs.release.outputs.should_release == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+
+      - name: Download documentation artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: documentation
+          path: ./docs-build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs-build
+          publish_branch: gh-pages
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: test
+    outputs:
+      new_version: ${{ steps.bump.outputs.new_version }}
+      should_release: ${{ steps.check_bump.outputs.should_release }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # ensure previous tags are available
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install Python 3.13
+        run: uv python install 3.13
+
+      - name: Determine version bump type
+        id: check_bump
+        run: |
+          # Check if force_bump is provided via workflow_dispatch
+          if [ -n "${{ github.event.inputs.force_bump }}" ]; then
+            echo "bump_type=${{ github.event.inputs.force_bump }}" >> $GITHUB_OUTPUT
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "Using forced bump type: ${{ github.event.inputs.force_bump }}"
+            exit 0
+          fi
+
+          # Get the latest commit message
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MSG"
+
+          # Determine bump type based on commit message patterns
+          if echo "$COMMIT_MSG" | grep -qiE "(breaking|major|BREAKING CHANGE)"; then
+            BUMP_TYPE="major"
+          elif echo "$COMMIT_MSG" | grep -qiE "(feat|feature|minor)"; then
+            BUMP_TYPE="minor"
+          elif echo "$COMMIT_MSG" | grep -qiE "(fix|patch|bug|hotfix)"; then
+            BUMP_TYPE="patch"
+          elif echo "$COMMIT_MSG" | grep -qiE "(chore|docs|style|refactor|test|ci)"; then
+            # Skip release for maintenance commits unless explicitly requested
+            echo "Maintenance commit detected, skipping release"
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            # Default to patch for unclear commit messages
+            BUMP_TYPE="patch"
+          fi
+
+          echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+          echo "should_release=true" >> $GITHUB_OUTPUT
+          echo "Detected bump type: $BUMP_TYPE"
+
+      - name: Bump version
+        id: bump
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          # Bump version in pyproject.toml
+          uv version --bump ${{ steps.check_bump.outputs.bump_type }}
+          NEW_VERSION=$(uv version --short)
+
+          # Update version in _version.py
+          echo "__version__ = \"$NEW_VERSION\"" > src/wolpie/_version.py
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Bumped version to: $NEW_VERSION"
+
+      - name: Update lock file
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          uv sync --all-extras --dev
+          echo "Updated lock file with new version"
+
+      - name: Generate changelog
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          uv tool install git-changelog
+          git-changelog --output CHANGELOG.md
+
+      - name: Commit and tag
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml uv.lock CHANGELOG.md src/wolpie/_version.py
+          git commit -m "chore(release): v${{ steps.bump.outputs.new_version }}"
+          git tag v${{ steps.bump.outputs.new_version }}
+          git push origin main --tags
+
+      - name: Create GitHub Release
+        if: steps.check_bump.outputs.should_release == 'true'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.bump.outputs.new_version }}
+          release_name: Release v${{ steps.bump.outputs.new_version }}
+          draft: false
+          prerelease: false
+
+  publish:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.should_release == 'true' && github.event_name == 'push'
+    environment:
+      name: pypi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install Python 3.13
+        run: uv python install 3.13
+
+      - name: Build
+        run: uv build
+
+      - name: Publish
+        run: uv publish
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}

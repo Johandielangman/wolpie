@@ -8,12 +8,9 @@
 #
 # ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
 
-from wolpie.types import TStr, pretty_str
-
-from ._version import __version__
+from wolpie.types.safe import TStr, pretty_str
 
 __all__ = [
     "TStr",
-    "__version__",
     "pretty_str",
 ]
