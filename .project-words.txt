@@ -1,0 +1,12 @@
+# Custom project words for codespell
+# Add project-specific terms, abbreviations, or technical words here
+# One word per line
+
+# Example entries (remove these and add your own):
+# customword
+# techterm
+# projectname
+fastapi
+minversion
+pythonpath
+teardown
