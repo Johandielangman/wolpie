@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## Unreleased
+
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.3...HEAD)</small>
+
+### Fixed
+
+- fix: publish ([42d5847](https://github.com/Johandielangman/wolpie/commit/42d5847916284b58afcc638c62f08371fd310308) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.3](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.3) - 2025-10-04
+
+<small>[Compare with v0.1.2](https://github.com/Johandielangman/wolpie/compare/v0.1.2...v0.1.3)</small>
+
 ## [v0.1.2](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.2) - 2025-10-04
 
 <small>[Compare with v0.1.1](https://github.com/Johandielangman/wolpie/compare/v0.1.1...v0.1.2)</small>
