@@ -1,5 +1,4 @@
 name: "Create Release"
-
 on:
   workflow_dispatch:
     inputs:
@@ -7,44 +6,34 @@ on:
         description: "Version bump type (major, minor, patch)"
         required: true
         default: "patch"
-
 permissions:
   contents: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 0  # ensure previous tags are available
-
       - name: Install uv
         uses: astral-sh/setup-uv@v6
-
       - name: Install Python 3.13
         run: uv python install 3.13
-
       - name: Bump version
         id: bump
         run: |
           uv version --bump ${{ github.event.inputs.bump }}
           echo "new_version=$(uv version --short)" >> $GITHUB_OUTPUT
-
       - name: Generate changelog
         run: |
           uv tool install git-changelog
-          git-changelog --output CHANGELOG.md --tag ${{ steps.bump.outputs.new_version }}
-
+          git-changelog --output CHANGELOG.md
       - name: Commit and tag
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add pyproject.toml CHANGELOG.md
           git commit -m "chore(release): v${{ steps.bump.outputs.new_version }}"
           git tag v${{ steps.bump.outputs.new_version }}
-
           git push origin main --tags
