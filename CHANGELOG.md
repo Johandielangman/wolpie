@@ -8,13 +8,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- insertion marker -->
 ## Unreleased
 
-<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.11...HEAD)</small>
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.12...HEAD)</small>
+
+### Fixed
+
+- fix: add more repo boilerlate ([880008c](https://github.com/Johandielangman/wolpie/commit/880008cab149bab7ead818a83897c228fd8ea857) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.12](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.12) - 2025-10-04
+
+<small>[Compare with v0.1.11](https://github.com/Johandielangman/wolpie/compare/v0.1.11...v0.1.12)</small>
 
 ### Fixed
 
 - fix: codecov and basic badges ([426bfd4](https://github.com/Johandielangman/wolpie/commit/426bfd40a3afcd6b1309dde35b0eb2303bf2fdd5) by Johandielangman).
 
-<!-- insertion marker -->
 ## [v0.1.11](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.11) - 2025-10-04
 
 <small>[Compare with v0.1.10](https://github.com/Johandielangman/wolpie/compare/v0.1.10...v0.1.11)</small>
@@ -102,3 +110,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - fix: release ([5fcd028](https://github.com/Johandielangman/wolpie/commit/5fcd028bbfa867c2640dcf0582f8bdbf1b31c205) by Johandielangman).
 - fix: update .lock ([61fb474](https://github.com/Johandielangman/wolpie/commit/61fb474c109cb744260f2601aeafee98a5f62d2c) by Johandielangman).
 - fix: update python version ([b9d882d](https://github.com/Johandielangman/wolpie/commit/b9d882dc1b6b7538799034bf7ecb372c9abdd974) by Johandielangman).
+
