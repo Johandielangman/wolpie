@@ -5,7 +5,7 @@ build-backend = "uv_build"
 
 [project]
 name = "wolpie"
-version = "0.2.1"
+version = "0.2.2"
 description = "I got tired of copy-pasting the same blocks of code from project to project. So I decided to create Wolpie as my own personal swiss army knife for Python development. The one package to rule them all... for my needs at least..."
 readme = "README.md"
 requires-python = ">=3.11, <3.13"
