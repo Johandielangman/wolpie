@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/johandielangman/wolpie">
-    <img  style="background-color: rgba(13, 17, 23, 1)" loading="lazy" alt="Wolpie" src="https://github.com/johandielangman/wolpie/raw/main/docs/_static/img/banner.png" width="100%"/>
+    <img  loading="lazy" alt="Wolpie" src="https://github.com/johandielangman/wolpie/raw/main/docs/_static/img/banner.svg" width="100%"/>
   </a>
 </p>
 
