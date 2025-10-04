@@ -199,20 +199,26 @@ jobs:
           uv sync --all-extras --dev
           echo "Updated lock file with new version"
 
+      - name: Commit and tag version bump
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml uv.lock src/wolpie/_version.py
+          git commit -m "chore(release): v${{ steps.bump.outputs.new_version }}"
+          git tag v${{ steps.bump.outputs.new_version }}
+
       - name: Generate changelog
         if: steps.check_bump.outputs.should_release == 'true'
         run: |
           uv tool install git-changelog
           git-changelog --output CHANGELOG.md
 
-      - name: Commit and tag
+      - name: Commit updated changelog
         if: steps.check_bump.outputs.should_release == 'true'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml uv.lock CHANGELOG.md src/wolpie/_version.py
-          git commit -m "chore(release): v${{ steps.bump.outputs.new_version }}"
-          git tag v${{ steps.bump.outputs.new_version }}
+          git add CHANGELOG.md
+          git commit -m "docs: update changelog for v${{ steps.bump.outputs.new_version }}"
           git push origin main --tags
 
       - name: Create GitHub Release
