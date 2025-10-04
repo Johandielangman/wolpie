@@ -8,13 +8,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- insertion marker -->
 ## Unreleased
 
-<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.4...HEAD)</small>
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.5...HEAD)</small>
+
+### Fixed
+
+- fix: updated package ([6952ce1](https://github.com/Johandielangman/wolpie/commit/6952ce16cb463c01653bd0b6738244cf23433c32) by Johandielangman).
+- fix: better workflow ([0979c0b](https://github.com/Johandielangman/wolpie/commit/0979c0b687dfc654b36eb1c396c7ee77f2f88794) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.5](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.5) - 2025-10-04
+
+<small>[Compare with v0.1.4](https://github.com/Johandielangman/wolpie/compare/v0.1.4...v0.1.5)</small>
 
 ### Fixed
 
 - fix: publish ([c24c9ef](https://github.com/Johandielangman/wolpie/commit/c24c9efef470134a091fa3f78e12249154fb32f9) by Johandielangman).
 
-<!-- insertion marker -->
 ## [v0.1.4](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.4) - 2025-10-04
 
 <small>[Compare with v0.1.3](https://github.com/Johandielangman/wolpie/compare/v0.1.3...v0.1.4)</small>
