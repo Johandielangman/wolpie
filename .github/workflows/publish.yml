@@ -20,9 +20,31 @@ permissions:
   id-token: write
 
 jobs:
+  lint:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup uv with caching
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install ruff
+        run: uv tool install ruff
+
+      - name: Run ruff check
+        run: uv tool run ruff check .
+
+      - name: Run ruff format check
+        run: uv tool run ruff format --check .
+
   test:
     name: PyTest on ${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    needs: lint
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12"]

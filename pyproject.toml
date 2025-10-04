@@ -27,9 +27,10 @@ classifiers = [
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0", # tests
-    "pytest-cov",  # coverage (optional)
+    "pytest>=8.0",  # tests
+    "pytest-cov",   # coverage (optional)
     "pre-commit",
+    "ruff>=0.11.5", # linting and formatting
 ]
 docs = [
     "sphinx>=6.0",

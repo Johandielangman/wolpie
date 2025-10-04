@@ -1,5 +1,9 @@
 # Wolpie Documentation
 
+<div align="center">
+  <img loading="lazy" style="background-color: rgb(13, 17, 23)" src="_static/img/banner.png" alt="Wolpie Logo" width="100%"/>
+</div>
+
 ```{eval-rst}
 .. note::
    You are viewing documentation for Wolpie version |version|.

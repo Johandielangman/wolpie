@@ -11,4 +11,9 @@ wheels/
 .env
 tmp/*
 !.gitkeep
+
+# Sphinx
 docs/_build/*
+
+# Pre-Commit
+.bandit.report.txt
