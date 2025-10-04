@@ -14,7 +14,7 @@ license = "MIT"
 keywords = ["tool"]
 classifiers = [
     # https://pypi.org/classifiers/
-    "Development Status :: 1 - Planning",
+    "Development Status :: 2 - Pre-Alpha",
 
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
@@ -44,8 +44,11 @@ docs = [
 
 
 [project.urls]
-"Homepage" = "https://github.com/johandielangman/wolpie"
+"Homepage" = "https://wolpie.com"
+"Documentation" = "https://wolpie.com"
 "Repository" = "https://github.com/johandielangman/wolpie"
+"Issues" = "https://github.com/johandielangman/wolpie/issues"
+"Changelog" = "https://github.com/johandielangman/wolpie/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]
