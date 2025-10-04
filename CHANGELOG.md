@@ -8,13 +8,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- insertion marker -->
 ## Unreleased
 
-<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.8...HEAD)</small>
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.9...HEAD)</small>
+
+### Fixed
+
+- fix: deploy to github pages ([cbcea50](https://github.com/Johandielangman/wolpie/commit/cbcea50c99800a0387d4b6bfc49101a2770b26b1) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.9](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.9) - 2025-10-04
+
+<small>[Compare with v0.1.8](https://github.com/Johandielangman/wolpie/compare/v0.1.8...v0.1.9)</small>
 
 ### Fixed
 
 - fix: sphinx docs ([f299ea9](https://github.com/Johandielangman/wolpie/commit/f299ea94fc817ae00d0001afbf442d5b0b99de34) by Johandielangman).
 
-<!-- insertion marker -->
 ## [v0.1.8](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.8) - 2025-10-04
 
 <small>[Compare with v0.1.7](https://github.com/Johandielangman/wolpie/compare/v0.1.7...v0.1.8)</small>
