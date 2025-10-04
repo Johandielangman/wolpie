@@ -1,4 +1,6 @@
-from .core import add
+"""Wolpie - A collection of useful Python tooling utilities."""
 
-__all__ = ["add"]
-__version__ = "0.1.0"
+from ._version import __version__
+from .core import add, divide, multiply
+
+__all__ = ["__version__", "add", "divide", "multiply"]

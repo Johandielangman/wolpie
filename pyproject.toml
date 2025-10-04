@@ -31,7 +31,13 @@ dev = [
     "pytest-cov",  # coverage (optional)
     "pre-commit",
 ]
-docs = ["sphinx>=6.0", "sphinx-rtd-theme", "sphinx-autodoc-typehints"]
+docs = [
+    "sphinx>=6.0",
+    "sphinx-book-theme",
+    "sphinx-autodoc-typehints",
+    "myst-parser",
+    "linkify-it-py",
+]
 
 
 [project.urls]

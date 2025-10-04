@@ -11,3 +11,4 @@ wheels/
 .env
 tmp/*
 !.gitkeep
+docs/_build/*
