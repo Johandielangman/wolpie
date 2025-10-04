@@ -8,13 +8,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- insertion marker -->
 ## Unreleased
 
-<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.12...HEAD)</small>
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.13...HEAD)</small>
+
+### Fixed
+
+- fix: better banner ([18f1600](https://github.com/Johandielangman/wolpie/commit/18f16007830cac77aa94f7cef24509d8ee7f1947) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.13](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.13) - 2025-10-04
+
+<small>[Compare with v0.1.12](https://github.com/Johandielangman/wolpie/compare/v0.1.12...v0.1.13)</small>
 
 ### Fixed
 
 - fix: add more repo boilerlate ([880008c](https://github.com/Johandielangman/wolpie/commit/880008cab149bab7ead818a83897c228fd8ea857) by Johandielangman).
 
-<!-- insertion marker -->
 ## [v0.1.12](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.12) - 2025-10-04
 
 <small>[Compare with v0.1.11](https://github.com/Johandielangman/wolpie/compare/v0.1.11...v0.1.12)</small>
