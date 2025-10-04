@@ -18,7 +18,6 @@ on:
 permissions:
   contents: write
   id-token: write
-  pages: write
 
 jobs:
   test:
@@ -66,8 +65,9 @@ jobs:
           uv run sphinx-build -b html . _build/html
 
       - name: Upload documentation artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          name: documentation
           path: docs/_build/html
 
   deploy-docs:
@@ -75,13 +75,22 @@ jobs:
     runs-on: ubuntu-latest
     needs: docs
     if: github.ref == 'refs/heads/main'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Download documentation artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: documentation
+          path: ./docs-build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs-build
+          publish_branch: gh-pages
 
   release:
     name: Release
