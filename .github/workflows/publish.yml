@@ -106,6 +106,12 @@ jobs:
           echo "new_version=$(uv version --short)" >> $GITHUB_OUTPUT
           echo "Bumped version to: $(uv version --short)"
 
+      - name: Update lock file
+        if: steps.check_bump.outputs.should_release == 'true'
+        run: |
+          uv sync --all-extras --dev
+          echo "Updated lock file with new version"
+
       - name: Generate changelog
         if: steps.check_bump.outputs.should_release == 'true'
         run: |
@@ -117,7 +123,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml CHANGELOG.md
+          git add pyproject.toml uv.lock CHANGELOG.md
           git commit -m "chore(release): v${{ steps.bump.outputs.new_version }}"
           git tag v${{ steps.bump.outputs.new_version }}
           git push origin main --tags
