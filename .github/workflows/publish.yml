@@ -25,4 +25,4 @@ jobs:
       - name: Build
         run: uv build
       - name: Publish
-        run: uv publish --token $PYPI_API_TOKEN
+        run: uv publish
