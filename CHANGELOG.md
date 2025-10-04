@@ -8,13 +8,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 <!-- insertion marker -->
 ## Unreleased
 
-<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.10...HEAD)</small>
+<small>[Compare with latest](https://github.com/Johandielangman/wolpie/compare/v0.1.11...HEAD)</small>
+
+### Fixed
+
+- fix: codecov and basic badges ([426bfd4](https://github.com/Johandielangman/wolpie/commit/426bfd40a3afcd6b1309dde35b0eb2303bf2fdd5) by Johandielangman).
+
+<!-- insertion marker -->
+## [v0.1.11](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.11) - 2025-10-04
+
+<small>[Compare with v0.1.10](https://github.com/Johandielangman/wolpie/compare/v0.1.10...v0.1.11)</small>
 
 ### Fixed
 
 - fix: better order of docs ([f86d37f](https://github.com/Johandielangman/wolpie/commit/f86d37f9852c8d9830c6e3073c3330f7126dbebe) by Johandielangman).
 
-<!-- insertion marker -->
 ## [v0.1.10](https://github.com/Johandielangman/wolpie/releases/tag/v0.1.10) - 2025-10-04
 
 <small>[Compare with v0.1.9](https://github.com/Johandielangman/wolpie/compare/v0.1.9...v0.1.10)</small>
