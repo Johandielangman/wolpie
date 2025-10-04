@@ -7,8 +7,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Wolpie Documentation &#8212; Wolpie Documentation v0.1.15</title>
+    <link rel="icon" sizes="16x16" href="_static/_static/favicon/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="_static/_static/favicon/favicon-32x32.png" type="image/png">
+    <title>Wolpie Documentation &#8212; Wolpie Documentation v0.2.0</title>
   
   
   
@@ -30,6 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=e140606b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -37,14 +39,16 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=0498d8ea"></script>
+    <script src="_static/documentation_options.js?v=7f7c277e"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="next" title="Types" href="types.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,7 +164,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
 </ul>
 
     </div>
@@ -377,7 +381,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API Reference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
@@ -394,16 +397,21 @@ document.write(`
   <section id="wolpie-documentation">
 <h1>Wolpie Documentation<a class="headerlink" href="#wolpie-documentation" title="Link to this heading">#</a></h1>
 <div align="center">
-  <img loading="lazy" style="background-color: rgb(13, 17, 23)" src="_static/img/banner.svg" alt="Wolpie Logo" width="100%"/>
+  <img loading="lazy" src="_static/img/banner.svg" alt="Wolpie Logo" width="100%"/>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You are viewing documentation for Wolpie version 0.1.15.</p>
+<p>You are viewing documentation for Wolpie version 0.2.0.</p>
 </div>
-<p>Welcome to Wolpie! A collection of useful Python tooling utilities.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>Wolpie provides a set of convenient tools and utilities for Python developers. The package is designed to be lightweight, easy to use, and extensible.</p>
+<p>Welcome to <strong>Wolpie</strong>! Like the banner says, I got tired of copy-pasting the same blocks of code from project to project. I already figured out how to do something the way I like, but now I have to do it all over again in a new project. I also frequently found myself installing packages that did one small thing I needed, but then I had to install a whole package just for that one thing. So I decided to create <strong>Wolpie</strong> as my own personal swiss army knife for Python development. The one package to rule them all… for my needs at least.</p>
+<p>Over time, it will grow to include various utilities and tools that I find useful in my projects. Stay tuned</p>
+<p>Current Wolpie features include:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="types.html#pretty-str"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">pretty_str</span></code></span></a>: A function similar to <a class="reference external" href="https://docs.python.org/3/library/textwrap.html"><code class="docutils literal notranslate"><span class="pre">textwrap.shorten</span></code></a> but with better pretty string truncation.</p></li>
+<li><p><a class="reference internal" href="types.html#tstr"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">TStr</span></code></span></a>: A string subclass that automatically truncates itself when it exceeds a specified length.</p></li>
+</ul>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
@@ -411,19 +419,15 @@ document.write(`
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>wolpie
 </pre></div>
 </div>
-<p>Or using uv:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>wolpie
-</pre></div>
-</div>
 </section>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
 <p>Here’s a simple example of how to use Wolpie:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">pretty_str</span>
 
-<span class="c1"># Use the add function</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># Output: 5</span>
+<span class="c1"># Use the pretty_str function</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pretty_str</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># Output: &#39;Hello w...&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -432,17 +436,13 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#wolpie-module">Wolpie Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#core-module">Core Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="types.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html#classes">Classes</a></li>
 </ul>
 </li>
 </ul>
 </div>
-</section>
-<section id="api-reference">
-<h2>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
-<p>For detailed information about all available functions and classes, see the <a class="reference internal" href="api.html"><span class="doc">API Reference</span></a> documentation.</p>
 </section>
 <section id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
@@ -466,11 +466,11 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="api.html"
+       href="types.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">API Reference</p>
+        <p class="prev-next-title">Types</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -494,7 +494,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API Reference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
 </ul>
