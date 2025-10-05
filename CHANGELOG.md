@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [v0.2.3](https://github.com/Johandielangman/wolpie/releases/tag/v0.2.3) - 2025-10-05
+
+<small>[Compare with v0.2.2](https://github.com/Johandielangman/wolpie/compare/v0.2.2...v0.2.3)</small>
+
+### Fixed
+
+- fix: better bump control ([f20b30f](https://github.com/Johandielangman/wolpie/commit/f20b30f063f87f33a77749986fc151494be68328) by Johandielangman).
+
 ## [v0.2.2](https://github.com/Johandielangman/wolpie/releases/tag/v0.2.2) - 2025-10-04
 
 <small>[Compare with v0.2.1](https://github.com/Johandielangman/wolpie/compare/v0.2.1...v0.2.2)</small>
