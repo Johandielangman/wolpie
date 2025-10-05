@@ -148,7 +148,7 @@ jobs:
 
           # Get the latest commit message
           # %B for raw body
-          $ ref: https://git-scm.com/docs/pretty-formats
+          # ref: https://git-scm.com/docs/pretty-formats
           COMMIT_MSG=$(git --no-pager log -1 --pretty=%B)
           echo "Commit message: $COMMIT_MSG"
 
