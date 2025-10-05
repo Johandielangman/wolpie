@@ -257,7 +257,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+          # Only checkout the tagged version if we bumped version, otherwise use main
+          ref: ${{ needs.release.outputs.should_bump_version == 'true' && format('v{0}', needs.release.outputs.new_version) || 'main' }}
 
       - name: Setup uv with caching
         uses: astral-sh/setup-uv@v6
@@ -289,7 +290,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+          # Only checkout the tagged version if we bumped version, otherwise use main
+          ref: ${{ needs.release.outputs.should_bump_version == 'true' && format('v{0}', needs.release.outputs.new_version) || 'main' }}
 
       - name: Download documentation artifacts
         uses: actions/download-artifact@v4
