@@ -297,6 +297,9 @@ jobs:
           name: documentation
           path: ./docs-build
 
+      - name: Create CNAME file form var
+        run: echo "${{ vars.GH_CUSTOM_DOMAIN }}" > ./docs-build/CNAME
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
