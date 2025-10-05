@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="16x16" href="_static/_static/favicon/favicon-16x16.png" type="image/png">
     <link rel="icon" sizes="32x32" href="_static/_static/favicon/favicon-32x32.png" type="image/png">
-    <title>Types &#8212; Wolpie Documentation v0.2.2</title>
+    <title>Types &#8212; Wolpie Documentation v0.2.3</title>
   
   
   
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=d3f42505"></script>
+    <script src="_static/documentation_options.js?v=6808a718"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -430,7 +430,8 @@ document.write(`
 <dd><p>A function that truncates a string to a maximum number of characters,
 appending a placeholder if truncation occurs.</p>
 <p>Example Usage:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">pretty_str</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">pretty_str</span>
+<span class="c1"># or from wolpie import pretty_str</span>
 
 <span class="c1"># Basic usage</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pretty_str</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -505,6 +506,7 @@ equal to max_chars.</p></li>
 string operations. The TStr class uses the <a class="reference internal" href="#wolpie.types.safe.pretty_str" title="wolpie.types.safe.pretty_str"><code class="xref py py-func docutils literal notranslate"><span class="pre">pretty_str()</span></code></a> function for truncation under the hood.</p>
 <p>Example Usage:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">TStr</span>
+<span class="c1"># or from wolpie import TStr</span>
 
 <span class="c1"># Basic creation</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">TStr</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>

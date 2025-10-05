@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>wolpie.types.safe &#8212; Wolpie Documentation v0.2.2</title>
+    <title>wolpie.types.safe &#8212; Wolpie Documentation v0.2.3</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=d3f42505"></script>
+    <script src="../../../_static/documentation_options.js?v=6808a718"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -339,7 +339,8 @@ document.write(`
 
 <span class="sd">    .. code-block:: python</span>
 
-<span class="sd">        from wolpie import pretty_str</span>
+<span class="sd">        from wolpie.types import pretty_str</span>
+<span class="sd">        # or from wolpie import pretty_str</span>
 
 <span class="sd">        # Basic usage</span>
 <span class="sd">        result = pretty_str(&quot;hello world&quot;, max_chars=10)</span>
@@ -401,6 +402,7 @@ document.write(`
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from wolpie.types import TStr</span>
+<span class="sd">        # or from wolpie import TStr</span>
 
 <span class="sd">        # Basic creation</span>
 <span class="sd">        s = TStr(&quot;hello world&quot;, max_chars=10)</span>

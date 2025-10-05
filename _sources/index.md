@@ -30,15 +30,20 @@ pip install wolpie
 
 ## Quick Start
 
-Here's a simple example of how to use Wolpie:
+Step 1: Identify something that frustrates you.
+
+Step 2: Check if [Wolpie](https://wolpie.com) has a solution for it.
+
+Step 3: Import and use it.
 
 ```python
 from wolpie import pretty_str
 
-# Use the pretty_str function
-result = pretty_str("Hello world!", max_length=10)
+result = pretty_str("Hello world!", max_chars=10)
 print(result)  # Output: 'Hello w...'
 ```
+
+Step 4: Enjoy your newfound productivity!
 
 ## Contents
 
