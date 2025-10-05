@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="16x16" href="_static/_static/favicon/favicon-16x16.png" type="image/png">
     <link rel="icon" sizes="32x32" href="_static/_static/favicon/favicon-32x32.png" type="image/png">
-    <title>Wolpie &#8212; Wolpie Documentation v0.3.0</title>
+    <title>Sound &#8212; Wolpie Documentation v0.3.0</title>
   
   
   
@@ -45,10 +45,10 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sound';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Types" href="types.html" />
+    <link rel="prev" title="Types" href="types.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -111,8 +111,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -131,7 +129,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -163,9 +161,9 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="types.html">Types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sound</a></li>
 </ul>
 
     </div>
@@ -237,7 +235,7 @@
       
       
       
-      <li><a href="https://github.com/johandielangman/wolpie/edit/main/docs/index.md" target="_blank"
+      <li><a href="https://github.com/johandielangman/wolpie/edit/main/docs/sound.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -254,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/johandielangman/wolpie/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/johandielangman/wolpie/issues/new?title=Issue%20on%20page%20%2Fsound.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +282,7 @@
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="_sources/sound.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +366,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Wolpie</h1>
+    <h1>Sound</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,11 +376,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-sound"><code class="docutils literal notranslate"><span class="pre">play_sound</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wolpie.sound.play_sound"><code class="docutils literal notranslate"><span class="pre">play_sound()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ding"><code class="docutils literal notranslate"><span class="pre">ding</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wolpie.sound.ding"><code class="docutils literal notranslate"><span class="pre">ding()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -394,82 +398,97 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div align="center">
-  <img loading="lazy" src="_static/img/banner.svg" alt="Wolpie Logo" width="100%"/>
+  <section id="sound">
+<h1>Sound<a class="headerlink" href="#sound" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">wolpie.sound</span></code> package provides simple utilities for playing sound files.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<section id="play-sound">
+<span id="id1"></span><h3><code class="docutils literal notranslate"><span class="pre">play_sound</span></code><a class="headerlink" href="#play-sound" title="Link to this heading">#</a></h3>
+<p>This function is based on the work done by <a class="reference external" href="https://pypi.org/project/playsound/">playsound</a>. I didn’t like the way it was structured, so I rewrote it to fit my needs. Currently, it only supports Windows, but I plan to add support for other platforms in the future.</p>
+<p>I required a lightweight way to play sound files so that I could use it in my <a class="reference internal" href="#with-ding"><span class="std std-ref">ding context manager</span></a>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wolpie.sound.play_sound">
+<span class="sig-prename descclassname"><span class="pre">wolpie.sound.</span></span><span class="sig-name descname"><span class="pre">play_sound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#wolpie.sound.play_sound" title="Link to this definition">#</a></dt>
+<dd><p>A function that will play <cite>*.mp3</cite> and <cite>*.wav</cite> sound files.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is only officially supported on Windows.</p>
 </div>
-<hr class="docutils" />
-<section id="wolpie">
-<h1>Wolpie<a class="headerlink" href="#wolpie" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://johandielangman.github.io/wolpie/"><img alt="Docs" src="https://img.shields.io/badge/docs-wolpie.com-blue" /></a>
-<a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/license-MIT-green" /></a>
-<a class="reference external" href="https://www.python.org/downloads/"><img alt="Python Version" src="https://img.shields.io/badge/python-3.11-blue" /></a>
-<a class="reference external" href="https://www.python.org/downloads/"><img alt="Python Version" src="https://img.shields.io/badge/python-3.12-blue" /></a>
-<a class="reference external" href="https://pypi.org/project/wolpie/"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/wolpie" /></a>
-<a class="reference external" href="https://codecov.io/github/Johandielangman/wolpie"><img alt="codecov" src="https://codecov.io/github/Johandielangman/wolpie/graph/badge.svg?token=7WE2YCWG8T" /></a>
-<a class="reference external" href="https://app.snyk.io/org/jghanekom2/project/c1f18c61-30d9-433a-a895-9e82c7dfa9cb"><img alt="Known Vulnerabilities" src="https://snyk.io/test/github/johandielangman/wolpie/badge.svg" /></a></p>
-<p>Welcome to <strong>Wolpie</strong>! Like the banner says, I got tired of copy-pasting the same blocks of code from project to project. I already figured out how to do something the way I like, but now I have to do it all over again in a new project. I also frequently found myself installing packages that did one small thing I needed, but then I had to install a whole package just for that one thing. So I decided to create <strong>Wolpie</strong> as my own personal swiss army knife for Python development. The one package to rule them all… for my needs at least.</p>
-<p>Over time, it will grow to include various utilities and tools that I find useful in my projects. Stay tuned</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You are viewing documentation for Wolpie version 0.3.0.</p>
-</div>
-<p>Current Wolpie features include:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="types.html#pretty-str"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">pretty_str</span></code></span></a>: A function similar to <a class="reference external" href="https://docs.python.org/3/library/textwrap.html"><code class="docutils literal notranslate"><span class="pre">textwrap.shorten</span></code></a> but with better pretty string truncation.</p></li>
-<li><p><a class="reference internal" href="types.html#tstr"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">TStr</span></code></span></a>: A string subclass that automatically truncates itself when it exceeds a specified length.</p></li>
-<li><p><a class="reference internal" href="sound.html#play-sound"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">play_sound</span></code></span></a>: A function for playing sound files.</p></li>
-<li><p><a class="reference internal" href="sound.html#with-ding"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">ding</span></code></span></a>: A context manager for playing a “ding” sound when a block of code finishes executing.</p></li>
-</ul>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
-<p>You can install Wolpie from PyPI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>wolpie
+<p>Example usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">play_sound</span>
+<span class="c1"># or from wolpie.sound import play_sound</span>
+
+<span class="n">play_sound</span><span class="p">(</span><span class="s2">&quot;path/to/sound/file.mp3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
-<p>Step 1: Identify something that frustrates you.</p>
-<p>Step 2: Check if <a class="reference external" href="https://wolpie.com">Wolpie</a> has a solution for it.</p>
-<p>Step 3: Import and use it.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">pretty_str</span><span class="p">,</span> <span class="n">ding</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want sound files, consider <a class="reference external" href="https://pixabay.com/sound-effects/search">https://pixabay.com/sound-effects/search</a></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sound</strong> (<em>str</em><em> | </em><em>Path</em>) – The sound file to play.</p></li>
+<li><p><strong>block</strong> (<em>bool</em>) – If True, the function will block until the sound has finished playing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>PlaySoundError</strong> – If there was an error playing the sound.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">pretty_str</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">,</span> <span class="n">max_chars</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># Output: &#39;Hello w...&#39;</span>
+</section>
+<section id="ding">
+<span id="with-ding"></span><h3><code class="docutils literal notranslate"><span class="pre">ding</span></code><a class="headerlink" href="#ding" title="Link to this heading">#</a></h3>
+<p>A context manager that plays a sound when the block of code inside it is done executing. By default, it plays a “ding” sound included with Wolpie, but you can specify your own</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wolpie.sound.ding">
+<span class="sig-prename descclassname"><span class="pre">wolpie.sound.</span></span><span class="sig-name descname"><span class="pre">ding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PosixPath('/home/runner/work/wolpie/wolpie/src/wolpie/sound/ding.mp3')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/wolpie/sound/play_sound.html#ding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wolpie.sound.ding" title="Link to this definition">#</a></dt>
+<dd><p>A context manager that plays a “ding” sound when the block of code inside the context manager finishes executing.</p>
+<p>If if fails to play the “ding”, it won’t raise any errors. After all.. the whole idea of this context
+manager is to notify you when a long running function is done. Imagine you wait 2 hours
+just for the nice sound file to fail. And you have to start from scratch. No thanks.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is only officially supported on Windows.</p>
+</div>
+<p>Uses <a class="reference internal" href="#wolpie.sound.play_sound" title="wolpie.sound.play_sound"><code class="xref py py-func docutils literal notranslate"><span class="pre">play_sound()</span></code></a> under the hood.</p>
+<p>Example usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wolpie</span><span class="w"> </span><span class="kn">import</span> <span class="n">ding</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="c1"># plays the default &quot;ding&quot; sound after the block finishes</span>
 <span class="k">with</span> <span class="n">ding</span><span class="p">():</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Simulate some long running function</span>
 
+<span class="c1"># or if you have a cooler ding:</span>
+<span class="k">with</span> <span class="n">ding</span><span class="p">(</span><span class="s2">&quot;path/to/cooler/ding.mp3&quot;</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Simulate some long running function</span>
 </pre></div>
 </div>
-<p>Step 4: Enjoy your newfound productivity!</p>
-</section>
-<section id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="types.html">Types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="types.html#functions">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="types.html#classes">Classes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sound.html">Sound</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sound.html#functions">Functions</a></li>
-</ul>
-</li>
-</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want sound files, consider <a class="reference external" href="https://pixabay.com/sound-effects/search">https://pixabay.com/sound-effects/search</a></p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sound</strong> (<em>str</em><em> | </em><em>Path</em>) – The sound file to play. Defaults to a built-in “ding” sound.</p>
+</dd>
+<dt class="field-even">Yield Generator[None, None, None]<span class="colon">:</span></dt>
+<dd class="field-even"><p>Yields nothing.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
-<p>Contributions are welcome! Please feel free to submit a Pull Request on <a class="reference external" href="https://github.com/johandielangman/wolpie">GitHub</a>.</p>
-</section>
-<section id="license">
-<h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
-<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
 </section>
 </section>
 
@@ -484,14 +503,14 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
+    <a class="left-prev"
        href="types.html"
-       title="next page">
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Types</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -509,11 +528,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">Contributing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#play-sound"><code class="docutils literal notranslate"><span class="pre">play_sound</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wolpie.sound.play_sound"><code class="docutils literal notranslate"><span class="pre">play_sound()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ding"><code class="docutils literal notranslate"><span class="pre">ding</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wolpie.sound.ding"><code class="docutils literal notranslate"><span class="pre">ding()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
