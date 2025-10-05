@@ -54,6 +54,13 @@ docs = [
 where = ["src"]
 
 
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
 [tool.coverage.run]
 source = ["src"]
 omit = ["tests/*", "*/tests/*", "*/__pycache__/*", "*/site-packages/*"]
@@ -71,3 +78,4 @@ exclude_lines = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
 ]
+show_missing = true

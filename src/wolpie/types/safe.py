@@ -23,7 +23,8 @@ def pretty_str(
 
     .. code-block:: python
 
-        from wolpie import pretty_str
+        from wolpie.types import pretty_str
+        # or from wolpie import pretty_str
 
         # Basic usage
         result = pretty_str("hello world", max_chars=10)
@@ -82,6 +83,7 @@ class TStr(str):
     .. code-block:: python
 
         from wolpie.types import TStr
+        # or from wolpie import TStr
 
         # Basic creation
         s = TStr("hello world", max_chars=10)

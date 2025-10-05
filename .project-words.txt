@@ -8,6 +8,7 @@
 # projectname
 fastapi
 minversion
+pypi
 pythonpath
 teardown
 wolpie
