@@ -8,16 +8,10 @@
 #
 # ~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~
 
-from wolpie.sound import DEFAULT_DING_FILE, ding, play_sound
-from wolpie.types import TStr, pretty_str
-
-from ._version import __version__
+from wolpie.sound.play_sound import DEFAULT_DING_FILE, ding, play_sound
 
 __all__ = [
     "DEFAULT_DING_FILE",
-    "TStr",
-    "__version__",
     "ding",
     "play_sound",
-    "pretty_str",
 ]

@@ -35,10 +35,15 @@ Step 2: Check if [Wolpie](https://wolpie.com) has a solution for it.
 Step 3: Import and use it.
 
 ```python
-from wolpie import pretty_str
+from wolpie import pretty_str, ding
+import time
 
 result = pretty_str("Hello world!", max_chars=10)
 print(result)  # Output: 'Hello w...'
+
+# plays the default "ding" sound after the block finishes
+with ding():
+    time.sleep(10)  # Simulate some long running function
 ```
 
 Step 4: Enjoy your newfound productivity!

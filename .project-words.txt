@@ -11,4 +11,5 @@ minversion
 pypi
 pythonpath
 teardown
+winmm
 wolpie
