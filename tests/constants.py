@@ -68,11 +68,14 @@ def create_constants(
         Environment.PROD: ROOT_DIR / ".env.prod",
     }
 
+    env_file = env_file_mapping[app_settings.mode]
+
     class _Constants(Constants):
         model_config = SettingsConfigDict(
-            env_file=env_file_mapping[app_settings.mode],
+            env_file=env_file if env_file.exists() else None,
             env_file_encoding="utf-8",
             env_ignore_empty=True,
+            extra="ignore",
         )
 
     return _Constants()  # type: ignore
