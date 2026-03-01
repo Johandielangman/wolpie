@@ -6,10 +6,18 @@
 # customword
 # techterm
 # projectname
+caplog
 fastapi
+gauth
+googleapiclient
+gsheets
+gtypes
+Hanekom
+levelname
 minversion
 pypi
 pythonpath
+Recalc
 teardown
 winmm
 wolpie

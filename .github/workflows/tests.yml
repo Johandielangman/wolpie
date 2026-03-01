@@ -2,20 +2,38 @@ name: MR Tests
 
 on:
   pull_request:
+    paths:
+      - "**.py"
+      - "pyproject.toml"
+      - "uv.lock"
 
 jobs:
   test:
-    name: PyTest on Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    name: PyTest on Python ${{ matrix.python-version }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
 
     strategy:
+      max-parallel: 1
       matrix:
         python-version: ["3.11", "3.12"]
+        os: [ubuntu-latest, windows-latest]
+
+    environment: tests
 
     env:
       UV_PYTHON: ${{ matrix.python-version }}
+      SH_ID_INTEGRATION_TESTS: ${{ secrets.SH_ID_INTEGRATION_TESTS }}
+      G_PROJECT_ID: ${{ secrets.G_PROJECT_ID }}
+      G_PRIVATE_KEY_ID: ${{ secrets.G_PRIVATE_KEY_ID }}
+      G_PRIVATE_KEY: ${{ secrets.G_PRIVATE_KEY }}
+      G_CLIENT_ID: ${{ secrets.G_CLIENT_ID }}
+      G_CLIENT_EMAIL: ${{ secrets.G_CLIENT_EMAIL }}
+      G_CLIENT_X509_CERT_URL: ${{ secrets.G_CLIENT_X509_CERT_URL }}
 
     steps:
+      - name: Rate limit delay
+        run: sleep 30
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
