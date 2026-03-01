@@ -39,9 +39,6 @@ def credentials_from_env(prefix: str = "G") -> CredentialsInfo:
         env_var_name = f"{prefix}_{key.upper()}" if prefix else key.upper()
         env_var_value = os.getenv(env_var_name, default_value) if default_value else os.getenv(env_var_name)
         if env_var_value is not None:
-            # Convert literal \n to actual newlines (needed for private_key from env vars)
-            if key == "private_key":
-                env_var_value = env_var_value.replace("\\n", "\n")
             env_vars[key] = env_var_value
 
     return CredentialsInfo(**env_vars)
