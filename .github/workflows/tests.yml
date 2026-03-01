@@ -9,6 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      max-parallel: 1
       matrix:
         python-version: ["3.11", "3.12"]
         os: [ubuntu-latest, windows-latest]
@@ -26,6 +27,9 @@ jobs:
       G_CLIENT_X509_CERT_URL: ${{ secrets.G_CLIENT_X509_CERT_URL }}
 
     steps:
+      - name: Rate limit delay
+        run: sleep 30
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
