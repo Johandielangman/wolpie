@@ -36,7 +36,7 @@ on:
 # If you specify the access for any singular scope, all of the other scopes
 # that are not specified are automatically set to none
 permissions:
-  contents: write  # Write to the Repo
+  contents: write # Write to the Repo
   id-token: write
 
 # ref: https://graphite.dev/guides/github-actions-permissions
@@ -72,15 +72,32 @@ jobs:
 
   # MARK: test
   test:
-    name: PyTest on ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    name: PyTest on Python ${{ matrix.python-version }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
+      max-parallel: 1
       matrix:
         python-version: ["3.11", "3.12"]
+        os: [ubuntu-latest, windows-latest]
+
+    environment: tests
+
     env:
       UV_PYTHON: ${{ matrix.python-version }}
+      SH_ID_INTEGRATION_TESTS: ${{ secrets.SH_ID_INTEGRATION_TESTS }}
+      G_PROJECT_ID: ${{ secrets.G_PROJECT_ID }}
+      G_PRIVATE_KEY_ID: ${{ secrets.G_PRIVATE_KEY_ID }}
+      G_PRIVATE_KEY: ${{ secrets.G_PRIVATE_KEY }}
+      G_CLIENT_ID: ${{ secrets.G_CLIENT_ID }}
+      G_CLIENT_EMAIL: ${{ secrets.G_CLIENT_EMAIL }}
+      G_CLIENT_X509_CERT_URL: ${{ secrets.G_CLIENT_X509_CERT_URL }}
+
     steps:
+      # ===> RATE LIMIT DELAY
+      - name: Rate limit delay
+        run: sleep 30
+
       # ===> SETUP REPO, UV and CACHE
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -109,7 +126,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
+          flags: ${{ matrix.os }}-py${{ matrix.python-version }}
 
   # MARK: release
   release:
@@ -126,7 +143,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0  # ensure previous tags are available
+          fetch-depth: 0 # ensure previous tags are available
       - name: Install uv
         uses: astral-sh/setup-uv@v6
       - name: Install Python 3.12
@@ -319,7 +336,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          ref: v${{ needs.release.outputs.new_version }}  # Checkout the tagged version
+          ref: v${{ needs.release.outputs.new_version }} # Checkout the tagged version
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
