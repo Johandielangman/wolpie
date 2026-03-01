@@ -44,6 +44,9 @@ class GSheets:
     SERVICE_NAME: str = "sheets"
     GSHEETS_API_VERSION: str = str(os.getenv("GSHEETS_API_VERSION") or "v4")
 
+    # https://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.http.HttpRequest-class.html
+    GSHEETS_NUM_RETRIES: int = int(os.getenv("GSHEETS_NUM_RETRIES") or "5")
+
     def __init__(
         self,
         g_auth: GAuth,
@@ -94,7 +97,9 @@ class GSheets:
                 spreadsheetId=self._spreadsheet_id,
                 includeGridData=False,
                 excludeTablesInBandedRanges=True,
-            ).execute()
+            ).execute(
+                num_retries=self.GSHEETS_NUM_RETRIES,
+            )
 
             self._logger.info(f"Successfully connected to spreadsheet: {self._spreadsheet_id}")
         except HttpError as e:
@@ -142,6 +147,7 @@ class GSheets:
         major_dimension: Dimension = Dimension.ROWS,
         value_renderer_option: ValueRenderOption = ValueRenderOption.UNFORMATTED_VALUE,
         date_time_render_option: DateTimeRenderOption = DateTimeRenderOption.SERIAL_NUMBER,
+        num_retries: int | None = None,
     ) -> ValueRange:
         # https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/get
 
@@ -165,7 +171,9 @@ class GSheets:
                     valueRenderOption=str(value_renderer_option),
                     dateTimeRenderOption=str(date_time_render_option),
                 )
-                .execute()
+                .execute(
+                    num_retries=num_retries or self.GSHEETS_NUM_RETRIES,
+                )
             )
         except HttpError as e:
             _e: GHttpErrorDetails = parse_error(e)
@@ -184,6 +192,7 @@ class GSheets:
         include_values_in_response: bool = False,
         response_value_render_option: ValueRenderOption = ValueRenderOption.UNFORMATTED_VALUE,
         response_date_time_render_option: DateTimeRenderOption = DateTimeRenderOption.SERIAL_NUMBER,
+        num_retries: int | None = None,
     ) -> UpdateValuesResponse:
         # ref: https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/update
 
@@ -208,7 +217,9 @@ class GSheets:
                     responseValueRenderOption=str(response_value_render_option),
                     responseDateTimeRenderOption=str(response_date_time_render_option),
                 )
-                .execute()
+                .execute(
+                    num_retries=num_retries or self.GSHEETS_NUM_RETRIES,
+                )
             )
         except HttpError as e:
             _e: GHttpErrorDetails = parse_error(e)
