@@ -54,7 +54,6 @@ def test_init_error_handling(
 ):
     # ====> SETUP THE LOGGER
     caplog.set_level(logging.ERROR)
-    logger = logging.getLogger("test")
 
     # ====> CHECK THAT AN ERROR IS RAISED
     with pytest.raises(HttpError) as exc_info:

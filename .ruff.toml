@@ -18,7 +18,6 @@ select = [
     "A",
     "C4",
     "DTZ",
-    "EM",
     "ISC",
     "ICN",
     "LOG",
