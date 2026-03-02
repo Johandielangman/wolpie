@@ -284,17 +284,17 @@ jobs:
         run: uv sync --locked --group docs --all-extras --dev
 
       # ===> BUILD DOCS
-      - name: Build Sphinx documentation
+      - name: Build MkDocs documentation
         run: |
           cd docs
-          uv run sphinx-build -b html . _build/html
+          uv run mkdocs build --config-file mkdocs.yml
 
       # ===> UPLOAD HTML TO ARTIFACTS
       - name: Upload documentation artifacts
         uses: actions/upload-artifact@v4
         with:
           name: documentation
-          path: docs/_build/html
+          path: docs/site
 
   # MARK: deploy-docs
   deploy-docs:

@@ -14,15 +14,13 @@ from typing import Self, SupportsIndex
 def pretty_str(
     text: str,
     max_chars: int,
-    placeholder="...",
+    placeholder: str = "...",
 ) -> str:
     """A function that truncates a string to a maximum number of characters,
     appending a placeholder if truncation occurs.
 
-    Example Usage:
-
-    .. code-block:: python
-
+    Example:
+        ```python
         from wolpie.types import pretty_str
         # or from wolpie import pretty_str
 
@@ -41,17 +39,22 @@ def pretty_str(
         # Empty placeholder
         result = pretty_str("hello world", max_chars=5, placeholder="")
         print(result)  # Output: "hello"
+        ```
 
+    Args:
+        text: The string to be truncated.
+        max_chars: The maximum number of characters allowed in the output string.
+        placeholder: The string to append if truncation occurs. Default is '...'.
 
-    :param str text: The string to be truncated.
-    :param int max_chars: The maximum number of characters allowed in the output string.
-    :param str placeholder: The string to append if truncation occurs. Default is '...'.
-    :raises TypeError: If text is not a string.
-    :raises ValueError: If max_chars is not a positive integer or if placeholder length is greater than or
-        equal to max_chars.
-    :raises TypeError: If placeholder is not a string.
-    :raises ValueError: If placeholder length is greater than or equal to max_chars.
-    :return str: The truncated string, if necessary, with the placeholder appended.
+    Returns:
+        The truncated string, if necessary, with the placeholder appended.
+
+    Raises:
+        TypeError: If text is not a string.
+        ValueError: If max_chars is not a positive integer or if placeholder length is greater than or
+            equal to max_chars.
+        TypeError: If placeholder is not a string.
+        ValueError: If placeholder length is greater than or equal to max_chars.
     """
 
     # ====> VALIDATION
@@ -76,12 +79,10 @@ def pretty_str(
 
 class TStr(str):
     """A string subclass that automatically truncates its content to a maximum length when created or modified through
-    string operations. The TStr class uses the :func:`pretty_str` function for truncation under the hood.
+    string operations. The TStr class uses the `pretty_str` function for truncation under the hood.
 
-    Example Usage:
-
-    .. code-block:: python
-
+    Example:
+        ```python
         from wolpie.types import TStr
         # or from wolpie import TStr
 
@@ -95,9 +96,7 @@ class TStr(str):
         s2 = s1 + " world"
         print(type(s2))  # Output: <class 'wolpie.types.safe.TStr'>
         print(s2)  # Output: "hello w..."
-
-    :param str value: The initial string value.
-    :return TStr: A new TStr instance.
+        ```
     """
 
     __slots__ = (
@@ -114,6 +113,16 @@ class TStr(str):
         max_chars: int | None = None,
         placeholder: str = "...",
     ) -> Self:
+        """Create a new TStr instance.
+
+        Args:
+            value: The initial string value.
+            max_chars: Maximum number of characters. If None, no truncation occurs.
+            placeholder: String to append when truncating. Default is '...'.
+
+        Returns:
+            A new TStr instance with the specified truncation settings.
+        """
         if max_chars is not None:
             value = pretty_str(
                 text=value,

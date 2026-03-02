@@ -1,6 +1,7 @@
 import logging
 import os
 from pathlib import Path
+from typing import Any
 
 from google.oauth2 import service_account
 from pydantic import BaseModel
@@ -21,6 +22,20 @@ class CredentialsInfo(BaseModel):
 
 
 def credentials_from_env(prefix: str = "G") -> CredentialsInfo:
+    """Load Google service account credentials from environment variables.
+
+    Args:
+        prefix: The prefix for environment variable names. Default is "G".
+
+    Returns:
+        A CredentialsInfo object containing the credentials.
+
+    Example:
+        ```python
+        # Set environment variables like G_PROJECT_ID, G_PRIVATE_KEY, etc.
+        creds = credentials_from_env(prefix="G")
+        ```
+    """
     env_vars = {
         "type": "service_account",
         "project_id": "",
@@ -45,14 +60,43 @@ def credentials_from_env(prefix: str = "G") -> CredentialsInfo:
 
 
 class GAuth:
+    """Google authentication handler for service accounts.
+
+    This class manages Google service account credentials and provides
+    authentication for Google API services.
+
+    Args:
+        logger: Optional logger instance for logging.
+        credentials_path: Path to the service account JSON file.
+        credentials_info: CredentialsInfo object with service account details.
+        scopes: List of OAuth scopes to request.
+        **kwargs: Additional keyword arguments passed to credentials.
+
+    Raises:
+        ValueError: If neither credentials_info nor credentials_path is provided.
+
+    Example:
+        ```python
+        from pathlib import Path
+        from wolpie.gsheets import GAuth
+
+        # Using credentials file
+        auth = GAuth(credentials_path=Path("service-account.json"))
+
+        # Using credentials from environment
+        from wolpie.gsheets._gauth import credentials_from_env
+        auth = GAuth(credentials_info=credentials_from_env())
+        ```
+    """
+
     def __init__(
         self,
         logger: logging.Logger | None = None,
         credentials_path: Path | None = None,
         credentials_info: CredentialsInfo | None = None,
         scopes: list[str] | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self._logger = logger or logging.getLogger(__name__)
 
         if credentials_info is None and credentials_path is None:

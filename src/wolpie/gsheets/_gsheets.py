@@ -41,6 +41,41 @@ class SheetProperty(TypedDict, total=False):
 
 
 class GSheets:
+    """Google Sheets API client for reading and writing spreadsheet data.
+
+    This class provides a high-level interface for interacting with Google Sheets,
+    including reading values, writing values, and managing sheet metadata.
+
+    Attributes:
+        SERVICE_NAME: The Google API service name ("sheets").
+        GSHEETS_API_VERSION: The Google Sheets API version to use.
+        GSHEETS_NUM_RETRIES: Number of retries for failed API requests.
+
+    Args:
+        g_auth: GAuth instance with valid credentials.
+        spreadsheet_id: The ID of the Google Spreadsheet to interact with.
+
+    Raises:
+        ValueError: If invalid authentication credentials are provided.
+        RuntimeError: If the spreadsheet doesn't have auto recalc set to ON_CHANGE.
+
+    Example:
+        ```python
+        from wolpie.gsheets import GAuth, GSheets
+        from pathlib import Path
+
+        # Authenticate and create client
+        auth = GAuth(credentials_path=Path("service-account.json"))
+        sheets = GSheets(auth, spreadsheet_id="your-spreadsheet-id")
+
+        # Read values
+        values = sheets.read_values("Sheet1!A1:B10")
+
+        # Write values
+        sheets.write_values("Sheet1!A1", [[1, 2], [3, 4]])
+        ```
+    """
+
     SERVICE_NAME: str = "sheets"
     GSHEETS_API_VERSION: str = str(os.getenv("GSHEETS_API_VERSION") or "v4")
 
