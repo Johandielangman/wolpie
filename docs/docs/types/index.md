@@ -2,9 +2,9 @@
 
 The `wolpie.types` package provides type-safe utilities for string manipulation and truncation.
 
-## Functions
+[📚 Full API Reference](../api/types.md){ .md-button }
 
-(pretty-str)=
+## Functions
 
 ### `pretty_str`
 
@@ -27,13 +27,7 @@ I want it to be exactly 10 long, including the placeholder. So I want:
 
 This is what inspired the `pretty_str` function and later the [`TStr`](#tstr) class.
 
-```{eval-rst}
-.. autofunction:: wolpie.types.safe.pretty_str
-```
-
 ## Classes
-
-(tstr)=
 
 ### `TStr`
 
@@ -58,11 +52,4 @@ and
 s = TStr("Hello world!", max_length=10)
 s += " Adding more text to make it even longer."
 print(s)  # Output: 'Hello w...'
-```
-
-```{eval-rst}
-.. autoclass:: wolpie.types.safe.TStr
-   :members:
-   :undoc-members:
-   :show-inheritance:
 ```

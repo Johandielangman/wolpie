@@ -1,0 +1,166 @@
+# ref: https://www.mkdocs.org/user-guide/configuration/
+site_name: wolpie
+site_description: A collection of useful Python Modules
+site_author: Johandielangman
+site_url: https://wolpie.com
+
+repo_name: wolpie
+repo_url: https://github.com/Johandielangman/wolpie
+
+copyright: Johan
+
+draft_docs: |
+  drafts/               # A "drafts" directory anywhere.
+  _unpublished.md       # A md file ending in _unpublished.md
+  !/foo_unpublished.md  # But keep this particular file.
+
+# ref: https://www.mkdocs.org/user-guide/configuration/#theme
+theme:
+  name: material
+  logo: static/img/logo_small.png
+  favicon: static/favicon/favicon.ico
+  palette:
+    - media: (prefers-color-scheme)
+      toggle:
+        icon: material/lightbulb-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to system preference
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.footnote.tooltips
+    - content.tabs.link
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+# ref https://www.mkdocs.org/user-guide/configuration/#watch
+watch:
+  - ../src/
+
+# ref: https://www.mkdocs.org/user-guide/configuration/#plugins
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            extensions:
+              - griffe_typingdoc
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_object_full_path: false
+            show_category_heading: true
+            show_if_no_docstring: true
+            inherited_members: true
+            members_order: source
+            separate_signature: true
+            unwrap_annotated: true
+            filters:
+              - "!^_" # exclude private members
+            merge_init_into_class: true
+            docstring_section_style: table
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+
+# ref https://www.mkdocs.org/user-guide/configuration/#markdown_extensions
+# also https://python-markdown.github.io/extensions/
+# and https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
+# and https://facelessuser.github.io/pymdown-extensions/
+markdown_extensions:
+  # =====> OFFICIALLY SUPPORTED
+  - admonition
+  - wikilinks
+  - md_in_html
+  - attr_list
+  - pymdownx.inlinehilite
+  # ref: https://www.mkdocs.org/user-guide/writing-your-docs/#linking-to-pages
+  - toc:
+      permalink: "#"
+      separator: "-"
+      baselevel: 2
+  # ======> THIRD PARTY -- https://facelessuser.github.io/pymdown-extensions/
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#single-line-format
+  # Snippets is an extension to insert markdown or HTML snippets into another markdown file
+  # Useful for including from other markdown files
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/details/
+  # Allows collapsible admonitions using ??? syntax
+  - pymdownx.details
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
+  # Very nice for block popouts using /// syntax
+  - pymdownx.blocks.details: null
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/
+  # gives the ability to code block highlight
+  # most useful: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/#highlighting-lines
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+            # ref: https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/
+            # Very nice for tabbed content
+
+
+  - pymdownx.tabbed:
+      alternate_style: true
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/
+  # maybe for future work?
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # ref: https://facelessuser.github.io/pymdown-extensions/extensions/quotes/
+  - pymdownx.quotes
+
+# ref: https://www.mkdocs.org/user-guide/writing-your-docs/#configure-pages-and-navigation
+nav:
+  - Home: index.md
+  - Features:
+      - Types: types/index.md
+      - Sound: sound/index.md
+      - Google Sheets: gsheets/index.md
+  - API Reference:
+      - Types: api/types.md
+      - Sound: api/sound.md
+      - Google Sheets: api/gsheets.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Johandielangman/wolpie

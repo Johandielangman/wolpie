@@ -21,3 +21,6 @@ docs/_build/*
 .bandit.report.txt
 .coverage
 coverage.xml
+
+# Docs
+docs/site/**/*

@@ -26,24 +26,26 @@ class PlaySoundInterface(abc.ABC):
     ) -> None:
         """A function that will play `*.mp3` and `*.wav` sound files.
 
-        .. warning::
+        Warning:
             This function is only officially supported on Windows.
 
-        Example usage:
-
-        .. code-block:: python
-
+        Example:
+            ```python
             from wolpie import play_sound
             # or from wolpie.sound import play_sound
 
             play_sound("path/to/sound/file.mp3")
+            ```
 
-        .. tip::
+        Tip:
             If you want sound files, consider https://pixabay.com/sound-effects/search
 
-        :param str | Path sound: The sound file to play.
-        :param bool block: If True, the function will block until the sound has finished playing.
-        :raises PlaySoundError: If there was an error playing the sound.
+        Args:
+            sound: The sound file to play.
+            block: If True, the function will block until the sound has finished playing.
+
+        Raises:
+            PlaySoundError: If there was an error playing the sound.
         """
         ...
 
@@ -130,15 +132,13 @@ def ding(
     manager is to notify you when a long running function is done. Imagine you wait 2 hours
     just for the nice sound file to fail. And you have to start from scratch. No thanks.
 
-    .. warning::
+    Warning:
         This function is only officially supported on Windows.
 
-    Uses :func:`play_sound` under the hood.
+    Uses `play_sound` under the hood.
 
-    Example usage:
-
-    .. code-block:: python
-
+    Example:
+        ```python
         from wolpie import ding
         import time
 
@@ -149,12 +149,16 @@ def ding(
         # or if you have a cooler ding:
         with ding("path/to/cooler/ding.mp3"):
             time.sleep(10)  # Simulate some long running function
+        ```
 
-    .. tip::
+    Tip:
         If you want sound files, consider https://pixabay.com/sound-effects/search
 
-    :param str | Path sound: The sound file to play. Defaults to a built-in "ding" sound.
-    :yield Generator[None, None, None]: Yields nothing.
+    Args:
+        sound: The sound file to play. Defaults to a built-in "ding" sound.
+
+    Yields:
+        Nothing.
     """
     try:
         yield
