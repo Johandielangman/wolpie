@@ -286,8 +286,7 @@ jobs:
       # ===> BUILD DOCS
       - name: Build MkDocs documentation
         run: |
-          cd docs
-          uv run mkdocs build --config-file mkdocs.yml
+          uv run mkdocs build --config-file docs/mkdocs.yml
 
       # ===> UPLOAD HTML TO ARTIFACTS
       - name: Upload documentation artifacts
